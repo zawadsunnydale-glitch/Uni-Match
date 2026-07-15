@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Application Tools — UniMatch</title>
+<meta name="description" content="AI-assisted search, quiz, subject planner, eligibility checker, career mapping, ECA advisor and cost calculator — all free.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="tools"></div>
+
+<main>
+  <section style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Free application tools</span>
+        <h2>Everything you need to plan, match, and cost your degree</h2>
+        <p>No sign-up. Every tool below runs instantly in your browser against our curated university and curriculum database.</p>
+      </div>
+
+      <div class="tool-tabs" id="toolTabs">
+        <button class="tool-tab active" data-tab="search">AI Search</button>
+        <button class="tool-tab" data-tab="quiz">Quick Match</button>
+        <button class="tool-tab" data-tab="planner">Subject Planner</button>
+        <button class="tool-tab" data-tab="eligibility">Eligibility</button>
+        <button class="tool-tab" data-tab="career">Career Map</button>
+        <button class="tool-tab" data-tab="eca">ECA Advisor</button>
+        <button class="tool-tab" data-tab="cost">Financial Planner</button>
+        <button class="tool-tab" data-tab="testprep">Test Prep</button>
+        <button class="tool-tab" data-tab="gpa">GPA Normalizer</button>
+        <button class="tool-tab" data-tab="strategy">Admissions Strategy</button>
+        <button class="tool-tab" data-tab="readiness">Readiness Tracker</button>
+      </div>
+
+      <!-- ============ AI SEARCH ============ -->
+      <div class="tool-panel active" id="panel-search">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">Natural language search</span>
+            <h2>Describe your ideal degree — we'll parse it</h2>
+            <p>This reads your budget, region, and subject straight out of a plain sentence and matches it against our university database. It's a local keyword parser, not a connected AI model — good enough for fast filtering, not for open conversation.</p>
+          </div>
+        </div>
+        <div class="feature-note">Try: "affordable computer science in Europe under $15k" · "medicine in Canada" · "cheap engineering Germany"</div>
+        <div class="search-row" style="margin-bottom:24px;">
+          <input class="input-line" id="aiSearchInput" placeholder="Describe your dream university…">
+          <button class="btn btn-primary" id="aiSearchBtn">Search</button>
+        </div>
+        <div class="result-panel" id="aiSearchResults">
+          <div class="result-empty">Type a plain-English description above, then hit Search.</div>
+        </div>
+      </div>
+
+      <!-- ============ QUICK MATCH QUIZ ============ -->
+      <div class="tool-panel" id="panel-quiz">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-teal">2-minute quiz</span>
+            <h2>Not sure where to start? Take the quiz</h2>
+            <p>Four quick questions, turned into a ranked, explained shortlist.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div class="pass" style="padding:32px;">
+            <div class="quiz-progress"><span><i id="qp1"></i></span><span><i id="qp2"></i></span><span><i id="qp3"></i></span><span><i id="qp4"></i></span><span><i id="qp5"></i></span></div>
+
+            <div class="quiz-step active" data-step="1">
+              <div class="quiz-question">Where do you want to study?</div>
+              <div class="chip-row" id="quizDestination"></div>
+            </div>
+            <div class="quiz-step" data-step="2">
+              <div class="quiz-question">What's your academic tier?</div>
+              <div class="chip-row">
+                <button class="chip" data-field="tier" data-value="top">Top tier (GPA 5.0 / A*AA+)</button>
+                <button class="chip" data-field="tier" data-value="strong">Strong (GPA 4.5+ / AAB)</button>
+                <button class="chip" data-field="tier" data-value="solid">Solid (GPA 4.0+ / BBC)</button>
+              </div>
+            </div>
+            <div class="quiz-step" data-step="3">
+              <div class="quiz-question">What field interests you most?</div>
+              <div class="chip-row" id="quizField"></div>
+            </div>
+            <div class="quiz-step" data-step="4">
+              <div class="quiz-question">Max annual budget (tuition + living, USD)?</div>
+              <div class="chip-row">
+                <button class="chip" data-field="budget" data-value="15000">Under $15,000</button>
+                <button class="chip" data-field="budget" data-value="35000">Under $35,000</button>
+                <button class="chip" data-field="budget" data-value="60000">Under $60,000</button>
+                <button class="chip" data-field="budget" data-value="999999">No limit</button>
+              </div>
+            </div>
+            <div class="quiz-step" data-step="5">
+              <div class="quiz-question">Do you need a scholarship?</div>
+              <div class="chip-row">
+                <button class="chip" data-field="scholarship" data-value="full-waiver">Full Tuition Waiver</button>
+                <button class="chip" data-field="scholarship" data-value="full-ride">Full Ride (tuition + stipend + living)</button>
+                <button class="chip" data-field="scholarship" data-value="partial">Partial Scholarship</button>
+                <button class="chip" data-field="scholarship" data-value="none">Not needed</button>
+              </div>
+            </div>
+
+            <div class="quiz-nav">
+              <button class="btn btn-ghost btn-sm" id="quizBack" disabled>← Back</button>
+              <button class="btn btn-primary btn-sm" id="quizNext">Next →</button>
+            </div>
+          </div>
+
+          <div class="result-panel" id="quizResults">
+            <div class="result-empty">Answer the quiz to see your personalized matches with explained match scores.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ SUBJECT PLANNER ============ -->
+      <div class="tool-panel" id="panel-planner">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">Pathway tool</span>
+            <h2>Plan your A-Levels or HSC subject choice</h2>
+            <p>Enter your dream course or profession, and we'll tell you exactly which subjects to take in A-Levels, HSC, or Madrasha to get there. <em style="color:var(--cream-45);font-style:normal;">Admission rules vary by university — treat this as a starting guide, then confirm with your target school.</em></p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Your dream course or profession</span>
+              <div class="chip-row" id="plannerCareerChips"></div>
+            </div>
+          </div>
+          <div class="result-panel" id="plannerResults">
+            <div class="result-empty">Pick a career on the left to see which subjects you'll need.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ELIGIBILITY ============ -->
+      <div class="tool-panel" id="panel-eligibility">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-teal">Subject eligibility checker</span>
+            <h2>Check your subject eligibility</h2>
+            <p>Select your curriculum and subjects to discover which programs you currently qualify for.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Your curriculum</span>
+              <div class="chip-row" id="eligCurriculum">
+                <button class="chip selected" data-value="hsc">National Curriculum of Bangladesh (HSC)</button>
+                <button class="chip" data-value="madrasha">Madrasha Board</button>
+                <button class="chip" data-value="alevels">English Medium (A-Levels)</button>
+              </div>
+            </div>
+            <div class="field-block" id="eligStreamBlock">
+              <span class="field-label">Your stream</span>
+              <div class="chip-row" id="eligStream"></div>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Your subjects</span>
+              <div class="chip-row" id="eligSubjects"></div>
+            </div>
+            <button class="btn btn-teal btn-block" id="eligCheckBtn">Check Eligibility →</button>
+          </div>
+          <div class="result-panel" id="eligResults">
+            <div class="result-empty">Select your curriculum and subjects, then click "Check Eligibility" to see which programs you qualify for.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ CAREER MAP ============ -->
+      <div class="tool-panel" id="panel-career">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">Career-to-university mapping</span>
+            <h2>Pick a dream career, see your best-fit universities</h2>
+            <p>Each career links to the universities with the strongest placement record and program depth for it.</p>
+          </div>
+        </div>
+        <div class="career-grid" id="careerMapGrid"></div>
+        <div class="career-results" id="careerMapResults"></div>
+      </div>
+
+      <!-- ============ ECA ADVISOR ============ -->
+      <div class="tool-panel" id="panel-eca">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-teal">ECA Advisor <span class="badge-soon">rule-based</span></span>
+            <h2>Discover the extracurriculars that boost your odds</h2>
+            <p>Pick your target university and intended major — you'll get a school-specific roadmap: Broad ECAs (baseline expectations for that type of school) and Specific ECAs (what actually moves the needle there), plus a note on how much ECAs matter for that particular admissions process. Content is drawn from a curated library informed by real youth-organization patterns, not a live language model.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Target university</span>
+              <select class="input-line" id="ecaUniSelect"></select>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Intended major</span>
+              <div class="chip-row" id="ecaFieldChips"></div>
+            </div>
+            <button class="btn btn-teal btn-block" id="ecaGenerateBtn">Get ECA Recommendations →</button>
+          </div>
+          <div class="result-panel" id="ecaResults">
+            <div class="result-empty">Choose a university and major to generate your roadmap.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ COST CALCULATOR ============ -->
+      <div class="tool-panel" id="panel-cost">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">Financial Planner</span>
+            <h2>Calculate your real, total out-of-pocket cost</h2>
+            <p>Tuition plus living costs, hidden ancillary fees, a currency converter, and how much part-time work can realistically offset — so nothing surprises your family later.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Target university</span>
+              <select class="input-line" id="costUniSelect"></select>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Scholarship coverage</span>
+              <div class="slider-row">
+                <input type="range" min="0" max="100" value="0" id="costScholarship">
+                <span class="slider-value" id="costScholarshipLabel">0% covered</span>
+              </div>
+            </div>
+            <div class="field-block">
+              <span class="field-label">Display currency</span>
+              <div class="chip-row" id="currencyChips"></div>
+            </div>
+            <div class="field-block">
+              <label style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--cream-dim);cursor:pointer;">
+                <input type="checkbox" id="ancillaryToggle" style="width:18px;height:18px;accent-color:var(--teal);">
+                Unmask hidden ancillary fees (health insurance, registration fee, textbooks, flight buffer)
+              </label>
+            </div>
+          </div>
+          <div class="result-panel" id="costResults"></div>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="bar-chart" id="costChart"></div>
+        </div>
+
+        <div class="section-head" style="margin-top:50px;">
+          <span class="eyebrow">Part-time work offset simulator</span>
+          <h2 style="font-size:1.6rem;">How much can you self-fund?</h2>
+          <p>Legal weekly hour limits vary by country — this uses your target university's real limit, not a guess.</p>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Expected hourly wage (destination currency)</span>
+              <input type="number" class="input-line" id="workWage" value="15" min="0">
+            </div>
+            <div class="field-block">
+              <span class="field-label">Weekly hours (capped at the legal limit)</span>
+              <input type="range" id="workHours" min="0" max="40" value="15">
+              <div class="slider-value" id="workHoursLabel">15 hrs/week</div>
+            </div>
+          </div>
+          <div class="result-panel" id="workOffsetResult"></div>
+        </div>
+
+        <div class="section-head" style="margin-top:50px;">
+          <span class="eyebrow">Tuition vs. opportunity cost</span>
+          <h2 style="font-size:1.6rem;">Financial break-even simulator</h2>
+          <p>Compares total 4-year cost abroad against staying home plus early local-career earnings, to estimate the year your investment pays off.</p>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Expected starting salary abroad (USD/yr)</span>
+              <input type="number" class="input-line" id="salaryAbroad" value="65000" min="0">
+            </div>
+            <div class="field-block">
+              <span class="field-label">Expected starting salary staying in Bangladesh (USD/yr equiv.)</span>
+              <input type="number" class="input-line" id="salaryHome" value="8000" min="0">
+            </div>
+            <div class="field-block">
+              <span class="field-label">Local (BD) 4-year degree total cost (USD equiv.)</span>
+              <input type="number" class="input-line" id="localDegreeCost" value="4000" min="0">
+            </div>
+            <button class="btn btn-teal btn-block" id="breakevenBtn">Calculate break-even year →</button>
+          </div>
+          <div class="result-panel" id="breakevenResult">
+            <div class="result-empty">Enter your numbers to see the projected break-even year.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ TEST PREP ============ -->
+      <div class="tool-panel" id="panel-testprep">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">SAT &amp; IELTS resources</span>
+            <h2>Prepare for the tests that gate your applications</h2>
+            <p>Free, structured practice resources, plus a quick self-assessment to see roughly where you stand before you register for the real exam.</p>
+          </div>
+        </div>
+
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">SAT resources</span>
+              <div class="uni-result-card">
+                <div><div class="uni-result-name"><a href="https://www.hueprep.com" target="_blank" rel="noopener">HuePrep</a></div><div class="uni-result-meta">Free, structured SAT curriculum and practice sets.</div></div>
+              </div>
+              <div class="uni-result-card">
+                <div><div class="uni-result-name"><a href="https://thecollegepanda.com/categories/sat-math/" target="_blank" rel="noopener">The College Panda — SAT Math</a></div><div class="uni-result-meta">Topic-by-topic SAT Math drills and strategy guides.</div></div>
+              </div>
+            </div>
+            <div class="field-block">
+              <span class="field-label">How to actually improve your SAT score</span>
+              <ul style="font-size:.9rem;color:var(--cream-dim);line-height:1.8;padding-left:18px;list-style:disc;">
+                <li>Take one full timed practice test before you study anything else — you need a real baseline, not a guess.</li>
+                <li>Drill your weakest section daily in short 20–30 minute blocks rather than cramming one long session weekly.</li>
+                <li>For Math, memorise the formulas you keep forgetting mid-test — a small flashcard deck beats re-deriving them under time pressure.</li>
+                <li>For Reading/Writing, read the question before the passage so you know what to scan for.</li>
+                <li>Re-take full practice tests every 2–3 weeks to track real progress, not just isolated drills.</li>
+              </ul>
+            </div>
+            <div class="field-block">
+              <span class="field-label">How to actually improve your IELTS score</span>
+              <ul style="font-size:.9rem;color:var(--cream-dim);line-height:1.8;padding-left:18px;list-style:disc;">
+                <li>Practice under real time pressure — most band loss comes from running out of time, not from not knowing the answer.</li>
+                <li>Build topic-based vocabulary (education, environment, technology, health) since these recur across Speaking and Writing.</li>
+                <li>Record yourself answering Speaking Part 2 questions and listen back — most fluency issues are audible only on playback.</li>
+                <li>For Writing Task 2, memorise a flexible essay structure (intro → two developed points → conclusion) rather than improvising each time.</li>
+                <li>Check whether your target universities accept Duolingo English Test instead — it's faster and cheaper, but not all programs accept it. See the checker below.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div class="field-block">
+              <span class="field-label">Quick English self-assessment</span>
+              <p style="font-size:.85rem;color:var(--cream-45);margin-bottom:14px;">Rate your comfort with each skill — this gives a rough estimate, not an official score.</p>
+              <div id="engQuizChips"></div>
+              <button class="btn btn-teal btn-block" id="engQuizBtn" style="margin-top:16px;">Estimate my band score →</button>
+            </div>
+            <div class="result-panel" id="engQuizResult">
+              <div class="result-empty">Answer the four questions to see an estimated band, plus which universities on our list accept Duolingo vs. require IELTS.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ GPA NORMALIZER ============ -->
+      <div class="tool-panel" id="panel-gpa">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-teal">Multi-board grade converter</span>
+            <h2>Convert your grades to a standardized 4.0 GPA</h2>
+            <p>High-school scoring models vary wildly — HSC's GPA-5.0 scale, A-Level letter grades, IB points, or a straight percentage. This gives you one comparable number for admissions systems that expect a 4.0-scale GPA.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Your curriculum / scoring system</span>
+              <select class="input-line" id="gpaSystemSelect"></select>
+            </div>
+            <div class="field-block" id="gpaInputBlock"></div>
+            <button class="btn btn-teal btn-block" id="gpaConvertBtn">Convert to 4.0 scale →</button>
+          </div>
+          <div class="result-panel" id="gpaResult">
+            <div class="result-empty">Select your system and enter your grade(s) to see the converted estimate.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ADMISSIONS STRATEGY ============ -->
+      <div class="tool-panel" id="panel-strategy">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-gold">Admissions Strategy Suite</span>
+            <h2>Chance Me, admissions weighting, and round strategy</h2>
+            <p>A rule-based approximation, not a promise — real admissions committees weigh things we can't fully see. Use this to sanity-check your list, not to predict a guaranteed outcome.</p>
+          </div>
+        </div>
+
+        <div class="panel-grid">
+          <div>
+            <div class="field-block">
+              <span class="field-label">Weighted GPA (4.0 scale)</span>
+              <input type="number" class="input-line" id="chanceGpa" value="3.7" step="0.01" min="0" max="4">
+            </div>
+            <div class="field-block">
+              <span class="field-label">Standardized test percentile (SAT/ACT — skip if not applicable)</span>
+              <input type="number" class="input-line" id="chanceTestPct" value="80" min="0" max="100">
+            </div>
+            <div class="field-block">
+              <span class="field-label">Strongest extracurricular tier</span>
+              <div class="chip-row" id="ecTierChips">
+                <button class="chip" data-value="4">Tier 1 — National/international olympiad, founder with real impact</button>
+                <button class="chip" data-value="3">Tier 2 — Regional award, leadership role, published work</button>
+                <button class="chip" data-value="2">Tier 3 — Active club leadership, consistent volunteering</button>
+                <button class="chip" data-value="1">Tier 4 — School club member, occasional volunteering</button>
+              </div>
+            </div>
+            <button class="btn btn-gold btn-block" id="chanceMeBtn">Calculate my Admission Index →</button>
+          </div>
+          <div class="result-panel" id="chanceMeResult">
+            <div class="result-empty">Fill in your profile to see a Reach/Target/Safety breakdown across our database.</div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:50px;">
+          <span class="eyebrow">Where each region actually looks</span>
+          <h2 style="font-size:1.6rem;">Regional admissions-weighting ledger</h2>
+        </div>
+        <div class="field-block">
+          <div class="chip-row" id="weightingCountryChips"></div>
+        </div>
+        <div class="result-panel" id="weightingResult"></div>
+
+        <div class="section-head" style="margin-top:50px;">
+          <span class="eyebrow">Application round strategy</span>
+          <h2 style="font-size:1.6rem;">ED vs. EA vs. RD</h2>
+        </div>
+        <div class="chip-row" id="roundChips" style="margin-bottom:18px;"></div>
+        <div class="result-panel" id="roundResult"></div>
+      </div>
+
+      <!-- ============ READINESS TRACKER ============ -->
+      <div class="tool-panel" id="panel-readiness">
+        <div class="tool-hero">
+          <div>
+            <span class="tool-tag tag-teal">Document Readiness Matrix</span>
+            <h2>Track your application's operational readiness</h2>
+            <p>Check off each document as it's ready — your progress ring updates live. Everything here saves to this browser only.</p>
+          </div>
+        </div>
+        <div class="panel-grid">
+          <div>
+            <div id="readinessChecklist"></div>
+          </div>
+          <div class="result-panel" style="text-align:center;">
+            <div id="readinessRingWrap"></div>
+            <p style="font-size:.85rem;color:var(--cream-45);margin-top:10px;">Saved locally in this browser — clear your browser data and this resets.</p>
+            <button class="btn btn-ghost btn-sm" id="exportProfileBtn" style="margin-top:16px;">Export my profile as JSON →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/tools.js"></script>
+</body>
+</html>
