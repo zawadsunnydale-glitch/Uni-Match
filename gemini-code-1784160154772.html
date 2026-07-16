@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMatch — Smart University Matching</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <div id="site-header" data-active="home"></div>
+
+  <main class="wrap" style="padding-top: 40px; padding-bottom: 80px;">
+    <section class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto 60px auto;">
+      <span class="eyebrow">AI-Assisted Search Framework</span>
+      <h1 style="font-size: 2.8rem; line-height: 1.15; margin: 12px 0 20px 0; letter-spacing: -0.03em;">
+        Find Your Perfect University Match.
+      </h1>
+      <p style="font-size: 1.2rem; color: var(--cream-dim); line-height: 1.6; margin-bottom: 30px;">
+        Connect your HSC, Madrasha, or A-Level grades directly to realistic global admissions pathways and local institution choices.
+      </p>
+      
+      <div style="background: var(--surface); border: 1px solid var(--line); padding: 6px; border-radius: 30px; display: flex; gap: 6px; align-items: center; max-width: 540px; margin: 0 auto;">
+        <input type="text" id="homeSearchInput" placeholder="Try: 'Computer Science in USA under $25k budget'..." style="flex: 1; background: transparent; border: 0; padding: 0 20px; color: var(--cream); font-family: inherit; font-size: 0.95rem; outline: none;">
+        <button class="btn btn-primary btn-shine" id="homeSearchBtn" style="border-radius: 24px; padding: 10px 24px;">Search Matrix</button>
+      </div>
+    </section>
+
+    <div class="footer-grid" style="margin-top: 40px; gap: 30px;">
+      <div class="visa-card reveal" style="padding: 30px;">
+        <span class="eyebrow">Strategic Evaluation</span>
+        <h3>Natural Query Search</h3>
+        <p style="margin-top: 10px; color: var(--cream-dim);">Describe your dream target parameters in normal everyday language. The processing engine isolates regions, fees, and subject domains automatically.</p>
+        <a href="tools.html#search" class="btn btn-ghost btn-sm" style="margin-top: 20px; padding-left: 0;">Launch Search →</a>
+      </div>
+      <div class="visa-card reveal" style="padding: 30px;">
+        <span class="eyebrow">Local Integrations</span>
+        <h3>Curriculum Alignment</h3>
+        <p style="margin-top: 10px; color: var(--cream-dim);">Custom parsing algorithms translate National Board GPA equations and A-Level raw sheets directly into international matching targets.</p>
+        <a href="tools.html#eligibility" class="btn btn-ghost btn-sm" style="margin-top: 20px; padding-left: 0;">Check Eligibility →</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const input = document.getElementById("homeSearchInput");
+      const btn = document.getElementById("homeSearchBtn");
+      if(btn && input) {
+        const trigger = () => {
+          if(input.value.trim()) window.location.href = `tools.html?q=${encodeURIComponent(input.value.trim())}#search`;
+        };
+        btn.addEventListener("click", trigger);
+        input.addEventListener("keydown", e => { if(e.key === "Enter") trigger(); });
+      }
+    });
+  </script>
+
+  <div id="site-footer"></div>
+
+</body>
+</html>

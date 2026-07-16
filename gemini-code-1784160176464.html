@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Portals — UniMatch Pathways</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/admissions.js" defer></script>
+</head>
+<body>
+
+  <div id="site-header" data-active=""></div>
+
+  <main class="wrap" style="padding-top: 40px; padding-bottom: 80px; text-align: center;">
+    <div class="reveal" style="max-width: 600px; margin: 0 auto 40px auto;">
+      <span class="eyebrow">Process Orchestration</span>
+      <h2>Select Your Admissions Track</h2>
+      <p style="color: var(--cream-dim); margin-top: 8px;">Choose between applying to local national universities or orchestrating international application requirements.</p>
+    </div>
+
+    <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 60px;">
+      <button class="btn btn-primary btn-shine" id="btnBd" style="padding: 14px 32px; font-size: 1rem;">Bangladesh Track</button>
+      <button class="btn btn-ghost" id="btnAbroad" style="padding: 14px 32px; font-size: 1rem; border: 1px solid var(--line);">Global Study Track</button>
+    </div>
+
+    <div style="text-align: left; max-width: 800px; margin: 0 auto; display: none;" id="bd">
+      <div class="visa-card" style="padding: 40px; margin-bottom: 30px;">
+        <h3>National Enrollment Pipelines</h3>
+        <p style="color: var(--cream-dim); margin-top: 10px; line-height: 1.6;">Track requirements across local structures including engineering clusters, integrated general unit tests, or individual medical panels.</p>
+        
+        <div style="margin-top: 30px; max-width: 400px;">
+          <label class="field-label">Target Campus Resources</label>
+          <select id="bdUniResourceSelect" class="form-control" style="margin-top: 6px;"></select>
+        </div>
+      </div>
+      <div id="bdResourceResult"></div>
+    </div>
+
+    <div style="text-align: left; max-width: 800px; margin: 0 auto; display: none;" id="abroad">
+      <div class="visa-card" style="padding: 40px;">
+        <h3>Global Application Frameworks</h3>
+        <p style="color: var(--cream-dim); margin-top: 10px; line-height: 1.6;">Organize document timelines for international criteria pools, ranging from centralized regional match arrays down to direct institutional applications.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+</body>
+</html>
