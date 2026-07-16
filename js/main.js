@@ -14,7 +14,7 @@
    add your Netlify domain under "Authorized JavaScript origins", and paste
    the client ID below. Client IDs are meant to be public — unlike API
    keys/secrets, this one is safe to ship in frontend code. */
-const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = 764421374487-4d0hb1p4ja938uh1d01q1uv0c77vs17p.apps.googleusercontent.com;
 
 function decodeJwt(token){
   try { return JSON.parse(atob(token.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"))); }
