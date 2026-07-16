@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Rankings — UniMatch</title>
+<meta name="description" content="Compare universities across QS, THE, US News and ARWU, plus a full Bangladeshi university tuition and employer-reputation table.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="rankings"></div>
+
+<main>
+  <section style="padding-bottom:20px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Aggregated global rankings</span>
+        <h2>Compare universities across QS, THE, US News and ARWU</h2>
+        <p>One table, four ranking systems, curated across the United States, United Kingdom, Germany, Hong Kong, Singapore, Canada, Japan and Australia.</p>
+      </div>
+
+      <div class="rank-tabs" id="rankTabs">
+        <button class="tool-tab active" data-rank="qs">QS World University Rankings</button>
+        <button class="tool-tab" data-rank="the">Times Higher Education</button>
+        <button class="tool-tab" data-rank="usnews">US News &amp; World Report</button>
+        <button class="tool-tab" data-rank="arwu">ARWU Shanghai Ranking</button>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="rank-table" id="rankTable">
+          <thead>
+            <tr><th>#</th><th>University</th><th>Country</th><th>Tuition / yr</th><th>Employer rep.</th></tr>
+          </thead>
+          <tbody id="rankTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="pass reveal" style="padding:30px;margin-top:34px;">
+        <span class="field-label">Top 10 — employer reputation score</span>
+        <div class="bar-chart" id="employerChart"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Bangladeshi universities</span>
+        <h2>Tuition, admission test &amp; employer reputation</h2>
+        <p>Covers top public and private universities so you can compare local options side-by-side with study-abroad ones.</p>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="rank-table">
+          <thead>
+            <tr><th>University</th><th>Type</th><th>City</th><th>Tuition / yr (BDT)</th><th>Employer rep.</th><th>Admission test</th></tr>
+          </thead>
+          <tbody id="bdTableBody"></tbody>
+        </table>
+      </div>
+      <div class="pass reveal" style="padding:30px;margin-top:34px;">
+        <span class="field-label">Bangladesh — employer reputation score</span>
+        <div class="bar-chart" id="bdChart"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/rankings.js"></script>
+</body>
+</html>

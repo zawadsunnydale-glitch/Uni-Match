@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Your Admissions — UniMatch</title>
+<meta name="description" content="Choose your path — apply to universities in Bangladesh or abroad — and see the matching timelines, tests, and tools.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active=""></div>
+
+<main>
+  <section style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow" style="justify-content:center;">Admissions</span>
+        <h2>Start your admissions process</h2>
+        <p>Most students run both tracks in parallel — a local backup and an abroad reach. Toggle between them below.</p>
+      </div>
+
+      <div class="path-grid reveal">
+        <button class="path-card bd btn-shine" id="btnBd" style="cursor:pointer;" >
+          <h3>🎓 Apply to Universities in Bangladesh</h3>
+          <p>Public & private admission tests, IBA prep timelines, and local tuition.</p>
+        </button>
+        <button class="path-card abroad btn-shine" id="btnAbroad" style="cursor:pointer;">
+          <h3>🌐 Apply to Universities Abroad</h3>
+          <p>Match your grades and budget to top-ranked global universities.</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="bd" class="pipeline-panel">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Local BD matrix</span>
+        <h2>Bangladesh admission timeline</h2>
+        <p>Engineering, medical, and business-school entrance tests generally follow this rough annual cycle after HSC results are published.</p>
+      </div>
+      <div class="visa-grid reveal">
+        <div class="visa-card">
+          <div class="visa-card-head"><h3>Engineering (BUET / CUET / KUET)</h3><span class="visa-badge">Public</span></div>
+          <ul class="visa-steps">
+            <li>HSC results published (July–Aug)</li>
+            <li>Admission circular & online form (Aug–Sep)</li>
+            <li>Admission test (Sep–Oct)</li>
+            <li>Merit list & subject choice (Oct–Nov)</li>
+          </ul>
+        </div>
+        <div class="visa-card">
+          <div class="visa-card-head"><h3>Medical (MBBS)</h3><span class="visa-badge">Public</span></div>
+          <ul class="visa-steps">
+            <li>HSC results published (July–Aug)</li>
+            <li>DGHS application window (Sep)</li>
+            <li>MCQ-based admission test (Oct)</li>
+            <li>Merit list & counselling (Nov–Dec)</li>
+          </ul>
+        </div>
+        <div class="visa-card">
+          <div class="visa-card-head"><h3>IBA, University of Dhaka</h3><span class="visa-badge">Public</span></div>
+          <ul class="visa-steps">
+            <li>Circular published (Sep–Oct)</li>
+            <li>Written test — English, Math, Analytical (Nov)</li>
+            <li>Viva voce for shortlisted candidates (Dec)</li>
+            <li>Final admission (Jan)</li>
+          </ul>
+        </div>
+        <div class="visa-card">
+          <div class="visa-card-head"><h3>Private universities (NSU / BRACU / IUB)</h3><span class="visa-badge">Private</span></div>
+          <ul class="visa-steps">
+            <li>Rolling admission, 4 intakes/year (Jan/May/Sep + Summer)</li>
+            <li>University-specific test or SAT/O-A-Level waiver</li>
+            <li>Scholarship assessed on HSC/O-A-Level GPA</li>
+            <li>Seat confirmation on fee payment</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:34px;">
+        <a href="rankings.html" class="btn btn-gold">See full Bangladesh tuition &amp; reputation table →</a>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:60px;">
+        <span class="eyebrow">Preparation resources</span>
+        <h2>Pick a university for its exact prep plan</h2>
+        <p>Official portals, admission-test breakdowns, and free test-prep resources — specific to each school's actual process.</p>
+      </div>
+      <div class="field-block">
+        <select class="input-line" id="bdUniResourceSelect"></select>
+      </div>
+      <div class="result-panel" id="bdResourceResult"></div>
+    </div>
+  </section>
+
+  <section id="abroad" class="pipeline-panel">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Study abroad matrix</span>
+        <h2>Pick your track abroad</h2>
+        <p>Every tool below pulls from the same global database — start wherever makes sense for you.</p>
+      </div>
+      <div class="career-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+        <a href="tools.html#quiz" class="career-card">
+          <div class="career-name">Take the Quick Match Quiz</div>
+          <div class="career-field">2 minutes → a ranked, explained shortlist.</div>
+        </a>
+        <a href="tools.html#eligibility" class="career-card">
+          <div class="career-name">Check subject eligibility</div>
+          <div class="career-field">Confirm your HSC / A-Level subjects clear program prerequisites.</div>
+        </a>
+        <a href="tools.html#cost" class="career-card">
+          <div class="career-name">Run the cost calculator</div>
+          <div class="career-field">Tuition + living costs, with a scholarship slider.</div>
+        </a>
+        <a href="visa.html" class="career-card">
+          <div class="career-name">Visa &amp; bank-sponsor planning</div>
+          <div class="career-field">Funds required and a deposit-timeline calculator.</div>
+        </a>
+        <a href="tools.html#eca" class="career-card">
+          <div class="career-name">Build your ECA roadmap</div>
+          <div class="career-field">Broad baseline + high-impact hooks for your target tier.</div>
+        </a>
+        <a href="rankings.html" class="career-card">
+          <div class="career-name">Compare global rankings</div>
+          <div class="career-field">QS, THE, US News and ARWU side-by-side.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admissions.js"></script>
+</body>
+</html>
